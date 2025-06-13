@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
-const API_KEY = '692d4bc85dc149bc86ba830c380dfa33'; // Replace with your actual key
+const API_KEY = process.env.API_KEY; // Replace with your actual key
 const PORT = process.env.PORT || 3000;
 
 // Route to get Liverpool matches
@@ -19,6 +19,21 @@ app.get('/liverpool-fixtures', async (req, res) => {
     res.json(data);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch fixtures' });
+  }
+});
+
+// England matches
+
+app.get('/england-fixtures', async (req, res) => {
+  try {
+    const response = await fetch('https://api.football-data.org/v4/teams/770/matches?status=SCHEDULED', {
+      headers: { 'X-Auth-Token': API_KEY }
+    });
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error('Error fetching England fixtures:', error);
+    res.status(500).json({ error: 'Failed to fetch England fixtures' });
   }
 });
 
