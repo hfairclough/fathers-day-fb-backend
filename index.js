@@ -37,6 +37,19 @@ app.get('/england-fixtures', async (req, res) => {
   }
 });
 
+app.get('/england-results', async (req, res) => {
+  try {
+    const response = await fetch('https://api.football-data.org/v4/teams/770/matches?status=FINISHED', {
+      headers: { 'X-Auth-Token': API_KEY }
+    });
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error('Error fetching England results:', error);
+    res.status(500).json({ error: 'Failed to fetch England results' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
