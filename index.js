@@ -8,6 +8,10 @@ app.use(cors());
 const API_KEY = process.env.API_KEY; // Replace with your actual key
 const PORT = process.env.PORT || 3000;
 
+app.get('/', (req, res) => {
+  res.send('Backend is working!');
+});
+
 // Route to get Liverpool matches
 app.get('/liverpool-fixtures', async (req, res) => {
   try {
