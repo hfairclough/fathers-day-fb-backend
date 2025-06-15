@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 // Route to get Liverpool matches
 app.get('/liverpool-fixtures', async (req, res) => {
   try {
-    const response = await fetch("https://api-football-v1.p.rapidapi.com/v3/fixtures?team=40&season=2024", {
+    const response = await fetch("https://api-football-v1.p.rapidapi.com/v3/fixtures?team=40&season=2025", {
       method: "GET",
       headers: { 
         "X-RapidAPI-Key": API_KEY,
